@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React Wallet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wallet-container">
+        <!-- Header -->
+        <header class="wallet-header">
+            <div class="network-selector">
+                <img src="icons/icon48.png" alt="Wallet Icon" class="wallet-icon">
+                <select id="networkSelect" class="network-dropdown">
+                    <option value="solana">Solana</option>
+                    <option value="ethereum">Ethereum</option>
+                </select>
+            </div>
+            <div class="header-actions">
+                <button id="settingsBtn" class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
+                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="wallet-content">
+            <!-- Account Info -->
+            <section class="account-section">
+                <div class="account-header">
+                    <div class="account-avatar">
+                        <img src="icons/icon48.png" alt="Account Avatar">
+                    </div>
+                    <div class="account-info">
+                        <h2 id="accountName">Account 1</h2>
+                        <p id="accountAddress" class="address-text">Loading...</p>
+                    </div>
+                </div>
+                <div class="balance-info">
+                    <div class="balance-amount">
+                        <span id="solBalance">0.00</span>
+                        <span class="balance-symbol">SOL</span>
+                    </div>
+                    <div class="balance-actions">
+                        <button class="action-button" id="receiveBtn">Receive</button>
+                        <button class="action-button" id="sendBtn">Send</button>
+                        <button class="action-button" id="swapBtn">Swap</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Token List -->
+            <section class="tokens-section">
+                <div class="section-header">
+                    <h3>Tokens</h3>
+                    <button class="icon-button" id="addTokenBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="token-list" id="tokenList">
+                    <!-- Token items will be added here dynamically -->
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <div class="section-header">
+                    <h3>Recent Activity</h3>
+                    <button class="view-all-btn">View All</button>
+                </div>
+                <div class="activity-list" id="activityList">
+                    <!-- Activity items will be added here dynamically -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Notifications -->
+        <div id="notificationContainer" class="notification-container"></div>
+
+        <!-- Debug Panel -->
+        <div id="debugPanel" class="debug-panel">
+            <div class="debug-header">
+                <h3>Debug Panel</h3>
+                <button id="toggleDebugBtn" class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="debug-content">
+                <div class="debug-section">
+                    <h4>Connection Status</h4>
+                    <p id="connectionStatus">Disconnected</p>
+                </div>
+                <div class="debug-section">
+                    <h4>Network</h4>
+                    <p id="networkInfo">Not connected</p>
+                </div>
+                <div class="debug-section">
+                    <h4>Recent Errors</h4>
+                    <div id="errorLog" class="error-log"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html> 
