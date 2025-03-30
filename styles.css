@@ -570,6 +570,7 @@ nav {
   margin-bottom: 1rem;
   position: relative;
   border: 2px solid transparent;
+  cursor: pointer;
 }
 
 .currency-item:hover {
@@ -654,27 +655,6 @@ nav {
   cursor: pointer;
 }
 
-.currency-radio:checked + .crypto-logo {
-  transform: scale(1.05);
-}
-
-.currency-radio:checked ~ .currency-name {
-  color: #14f195;
-  background: linear-gradient(45deg, #14f195, #9945ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.currency-radio:checked + .crypto-logo::after {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border: 2px solid;
-  border-image: linear-gradient(45deg, #14f195, #9945ff) 1;
-  border-radius: 50%;
-}
-
 .submit-btn {
   bottom: 5rem;
   left: 50%;
@@ -694,9 +674,64 @@ nav {
   opacity: 0.9;
 }
 
-.submit-btn:disabled {
-  background: #e9ecef;
-  color: #868e96;
-  cursor: not-allowed;
-  box-shadow: none;
+.send-inputs {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3436;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #2d3436;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #14f195;
+}
+
+.input-group input::placeholder {
+  color: #adb5bd;
+}
+
+/* Remove number input spinners */
+.input-group input[type="number"]::-webkit-outer-spin-button,
+.input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Add these new styles for the checked state */
+input[type="radio"]:checked + .currency-item {
+  border-color: #14f195;
+  background: rgba(20, 241, 149, 0.05);
+}
+
+input[type="radio"]:checked + .currency-item .currency-name {
+  background: linear-gradient(45deg, #14f195, #9945ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.usd-conversion {
+  margin-top: 0.5rem;
+  color: #636e72;
+  font-size: 0.9rem;
 }

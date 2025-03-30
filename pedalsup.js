@@ -121,7 +121,7 @@ document.addEventListener("click", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const currencyItems = document.querySelectorAll(".currency-item");
+  const currencyItems = document.querySelectorAll(".currencyItem");
 
   currencyItems.forEach((item) => {
     item.addEventListener("click", function (e) {
@@ -154,5 +154,42 @@ document.querySelectorAll("#copyAddress").forEach((addressElement) => {
     } catch (err) {
       console.error("Failed to copy: ", err);
     }
+  });
+});
+
+// Add cryptocurrency rates
+const cryptoRates = {
+  solana: 63.42, // Example rate: 1 SOL = $63.42
+  ethereum: 2235.15, // Example rate: 1 ETH = $2,235.15
+  sui: 1.42, // Example rate: 1 SUI = $1.42
+  polygon: 0.89, // Example rate: 1 MATIC = $0.89
+};
+
+// Function to update USD conversion
+function updateUSDConversion() {
+  const amount = document.getElementById("amount");
+  const usdConversion = document.getElementById("usdConversion");
+  const selectedCrypto = document.querySelector(
+    'input[name="currency"]:checked'
+  );
+
+  if (amount && usdConversion && selectedCrypto) {
+    const rate = cryptoRates[selectedCrypto.value];
+    const usdValue = (parseFloat(amount.value) || 0) * rate;
+    usdConversion.textContent = `≈ $${usdValue.toFixed(2)} USD`;
+  }
+}
+
+// Add event listeners
+document.addEventListener("DOMContentLoaded", function () {
+  const amountInput = document.getElementById("amount");
+  const radioInputs = document.querySelectorAll('input[name="currency"]');
+
+  if (amountInput) {
+    amountInput.addEventListener("input", updateUSDConversion);
+  }
+
+  radioInputs.forEach((radio) => {
+    radio.addEventListener("change", updateUSDConversion);
   });
 });
