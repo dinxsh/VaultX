@@ -17,7 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <title>Select</title>
+    <title>Profile</title>
   </head>
   <body>
     <nav>
@@ -52,93 +52,62 @@
     </nav>
 
     <div class="history-container">
-      <h1 class="history-title">Select Asset to Send</h1>
+      <h1 class="history-title">My Profile</h1>
     </div>
 
-    <form class="currency-list" action="#" method="POST">
-      <input
-        type="radio"
-        name="currency"
-        value="solana"
-        class="currency-radio"
-        id="solana"
-      />
-      <label for="solana" class="currency-item">
-        <div class="crypto-logo solana">
-          <i class="fa-solid fa-circle-nodes"></i>
-        </div>
-        <div class="currency-name">Solana</div>
-      </label>
-
-      <input
-        type="radio"
-        name="currency"
-        value="ethereum"
-        class="currency-radio"
-        id="ethereum"
-      />
-      <label for="ethereum" class="currency-item">
-        <div class="crypto-logo ethereum">
-          <i class="fa-brands fa-ethereum"></i>
-        </div>
-        <div class="currency-name">Ethereum</div>
-      </label>
-
-      <input
-        type="radio"
-        name="currency"
-        value="sui"
-        class="currency-radio"
-        id="sui"
-      />
-      <label for="sui" class="currency-item">
-        <div class="crypto-logo sui">
-          <i class="fa-solid fa-droplet"></i>
-        </div>
-        <div class="currency-name">Sui</div>
-      </label>
-
-      <input
-        type="radio"
-        name="currency"
-        value="polygon"
-        class="currency-radio"
-        id="polygon"
-      />
-      <label for="polygon" class="currency-item">
-        <div class="crypto-logo polygon">
-          <i class="fa-solid fa-infinity"></i>
-        </div>
-        <div class="currency-name">Polygon</div>
-      </label>
-
-      <div class="send-inputs">
-        <div class="input-group">
-          <label>Your Account ID</label>
-          <input
-            value="AccountIDL0r3m1p5um"
-            readonly
-            style="background-color: #f0f0f0"
-          />
-        </div>
-
-        <div class="input-group">
-          <label for="amount">Amount</label>
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            placeholder="0.00"
-            step="0.000001"
-            min="0"
-            required
-          />
-          <div class="usd-conversion" id="usdConversion">≈ $0.00 USD</div>
-        </div>
+    <div class="profile-container">
+      <div class="qr-section">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=AccountIDL0r3m1p5um"
+          alt="Account QR Code"
+          class="profile-qr"
+        />
       </div>
 
-      <button type="submit" class="submit-btn">Continue</button>
-    </form>
+      <div class="address-section">
+        <div class="public-address">
+          <p class="address-label">Public Address:</p>
+          <p class="address-value" id="copyPublicAddress">
+            AccountIDL0r3m1p5um&nbsp;<i class="fa-solid fa-copy"></i>
+          </p>
+        </div>
+
+        <button class="private-key-btn" id="privateKeyBtn">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          Private Address
+        </button>
+        <p class="warning-text">DO NOT SHARE</p>
+
+        <div
+          class="private-key-section"
+          id="privateKeySection"
+          style="display: none"
+        >
+          <div class="password-input">
+            <input
+              type="password"
+              placeholder="Enter Password"
+              id="passwordInput"
+              class="password-field"
+            />
+            <button class="submit-password-btn" id="submitPassword">
+              Show Private Key
+            </button>
+          </div>
+
+          <div
+            class="private-address"
+            id="privateAddress"
+            style="display: none"
+          >
+            <p class="address-label">Private Address:</p>
+            <p class="address-value" id="copyPrivateAddress">
+              xPRV8293mK9okMqz5nXv...&nbsp;<i class="fa-solid fa-copy"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="footer">
       <a href="pedalsup.html" class="footer-btn">

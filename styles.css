@@ -11,6 +11,28 @@ body {
   height: fit-content;
   min-height: 600px;
   padding-bottom: 4rem;
+  min-width: 400px;
+  background: white;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(20, 241, 149, 0.15) 0%,
+    rgba(20, 241, 149, 0.05) 40%,
+    transparent 70%
+  );
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 ::-webkit-scrollbar {
@@ -36,10 +58,11 @@ nav {
   /* background-color: rgba(26, 26, 26, 0.8);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px); */
-  background-color: #000;
+  background-color: #0000006a;
   position: sticky;
   top: 0;
   z-index: 100;
+  backdrop-filter: blur(6px);
 }
 
 .navbar {
@@ -146,11 +169,16 @@ nav {
   display: flex;
   justify-content: space-around;
   padding: 2rem 1rem;
+  padding-top: 0;
   max-width: 600px;
   margin: 0 auto;
   background-color: #f8f9fa;
   gap: 1rem;
   border-bottom: 2px solid #e9ecef;
+  background: linear-gradient(45deg, #14f195, #9945ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .action-btn {
@@ -193,6 +221,10 @@ nav {
   overflow-y: auto;
   max-height: fit-content;
   width: 100%;
+  background: linear-gradient(45deg, #14f195, #9945ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .crypto-card {
@@ -330,13 +362,14 @@ nav {
   right: 0;
   /* background-color: rgba(26, 26, 26, 0.8);
   backdrop-filter: blur(6px); */
-  background-color: #000;
+  background-color: #0000006a;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 1rem;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
+  backdrop-filter: blur(6px);
 }
 
 .footer-btn {
@@ -734,4 +767,267 @@ input[type="radio"]:checked + .currency-item .currency-name {
   margin-top: 0.5rem;
   color: #636e72;
   font-size: 0.9rem;
+}
+
+/* Profile Page Styles */
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  padding-top: 0;
+}
+
+.qr-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.profile-qr {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.address-section {
+  text-align: center;
+}
+
+.public-address {
+  margin-bottom: 2rem;
+}
+
+.address-label {
+  font-size: 0.9rem;
+  color: #636e72;
+  margin-bottom: 0.5rem;
+}
+
+.address-value {
+  font-size: 1rem;
+  color: #2d3436;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.private-key-btn {
+  background: #ff4b4b;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  transition: opacity 0.2s ease;
+}
+
+.private-key-btn:hover {
+  opacity: 0.9;
+}
+
+.warning-text {
+  color: #ff4b4b;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.private-key-section {
+  margin-top: 1.5rem;
+}
+
+.password-input {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.password-field {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #2d3436;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.password-field:focus {
+  border-color: #14f195;
+}
+
+.submit-password-btn {
+  background: linear-gradient(45deg, #14f195, #9945ff);
+  color: white;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  transition: opacity 0.2s ease;
+}
+
+.submit-password-btn:hover {
+  opacity: 0.9;
+}
+
+.private-address {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Auth Pages Styles */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-content {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-section {
+  margin-bottom: 3rem;
+}
+
+.logo-text {
+  font-size: 2.5rem;
+  font-weight: 600;
+  background: linear-gradient(45deg, #14f195, #9945ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.logo-subtitle {
+  color: #636e72;
+  font-size: 1rem;
+}
+
+.auth-form {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border: 1px solid rgba(20, 241, 149, 0.2);
+  box-shadow: 0 8px 32px rgba(20, 241, 149, 0.1);
+}
+
+.auth-form .input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.auth-form .input-group label {
+  color: #2d3436;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.auth-form .input-group input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(20, 241, 149, 0.3);
+  color: #2d3436;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.auth-form .input-group input:focus {
+  border-color: #14f195;
+  box-shadow: 0 0 0 3px rgba(20, 241, 149, 0.1);
+}
+
+.auth-form .input-group input::placeholder {
+  color: #adb5bd;
+}
+
+.auth-form .submit-btn {
+  width: calc(100% - 2rem);
+  background: linear-gradient(45deg, #14f195, #9945ff);
+  border: none;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.auth-form .submit-btn:hover {
+  opacity: 0.9;
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  color: #636e72;
+}
+
+.auth-footer a {
+  color: #14f195;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Add these to the existing styles */
+
+.seed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.seed-word {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #2d3436;
+  border: 1px solid rgba(20, 241, 149, 0.3);
+  text-align: left;
+  font-family: "Inter", monospace;
+  letter-spacing: 0.5px;
+}
+
+.seed-word span {
+  color: #636e72;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.auth-footer.warning-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #ff4b4b;
+}
+
+.auth-footer.warning-text i {
+  font-size: 1rem;
 }

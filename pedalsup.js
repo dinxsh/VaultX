@@ -193,3 +193,28 @@ document.addEventListener("DOMContentLoaded", function () {
     radio.addEventListener("change", updateUSDConversion);
   });
 });
+
+// Private key functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const privateKeyBtn = document.getElementById("privateKeyBtn");
+  const privateKeySection = document.getElementById("privateKeySection");
+  const submitPasswordBtn = document.getElementById("submitPassword");
+  const privateAddress = document.getElementById("privateAddress");
+
+  if (privateKeyBtn) {
+    privateKeyBtn.addEventListener("click", function () {
+      privateKeySection.style.display = "block";
+      privateAddress.style.display = "none";
+      document.getElementById("passwordInput").value = "";
+    });
+  }
+
+  if (submitPasswordBtn) {
+    submitPasswordBtn.addEventListener("click", function () {
+      const password = document.getElementById("passwordInput").value;
+      if (password) {
+        privateAddress.style.display = "block";
+      }
+    });
+  }
+});
