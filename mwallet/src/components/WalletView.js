@@ -256,21 +256,21 @@ function WalletView({
       label: `Assets`,
       children: (
         <div style={{ padding: '10px' }}>
-          <div style={styles.accountInfo}>
+          <div>
             <div style={styles.actionButtons}>
               <Button type="primary" style={styles.actionButton}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <span>Deposit</span>
+                  <span style={{ color: '#fff' }}>Deposit</span>
                 </div>
               </Button>
               <Button type="primary" style={styles.actionButton}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <span>Buy</span>
+                  <span style={{ color: '#fff' }}>Buy</span>
                 </div>
               </Button>
               <Button type="primary" style={styles.actionButton}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <span>Send</span>
+                  <span style={{ color: '#fff' }}>Send</span>
                 </div>
               </Button>
             </div>

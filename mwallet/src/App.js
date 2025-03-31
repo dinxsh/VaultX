@@ -37,7 +37,8 @@ function App() {
       left: 0,
       right: 0,
       zIndex: 100,
-      height: '40px'
+      height: '40px',
+      marginBottom: '10px'
     },
     logo: {
       height: '20px',
