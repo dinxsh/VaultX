@@ -1,6 +1,6 @@
-# VaultX 
+# VaultX 🔒
 
-a **browser extension wallet** that simplifies blockchain connectivity for React applications. It supports multiple evm based blockchain networks, provides a **developer-friendly API**, and ensures **secure key management** for seamless transaction signing.
+a **browser extension wallet** supporting multiple EVM-based blockchain networks, provides a **developer-friendly API** & ensures **security**!
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/752e24b9-379c-42c6-99c6-5ee8b8be94af"></img>
