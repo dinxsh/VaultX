@@ -1,70 +1,80 @@
-# VaultX
-decentralized crypto wallet which can also be added as Chrome Extension.
+# VaultX 
 
-## Important Note
-Never share your passphrase or private keys with anyone and keep them in a safe place. Always test a new blockchain app using a testnet to make yourself sure and avoid any issues later on. 
+a **browser extension wallet** that simplifies blockchain connectivity for React applications. It supports multiple evm based blockchain networks, provides a **developer-friendly API**, and ensures **secure key management** for seamless transaction signing.
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/752e24b9-379c-42c6-99c6-5ee8b8be94af"></img>
+</div>
 
-## Prerequisites
-1) Node Js
-2) NPM
-3) Moralis Account
-4) Alchemy or Infura Developer Account
+## 🚀 Features
+- **Standardized Wallet API** - Easily connect to React apps
+- **Multi-Chain Support** - Works with Ethereum, Solana, and more
+- **Secure Key Management** - Uses Web Crypto API & IndexedDB
+- **Minimal Configuration** - Simple integration for developers
+- **Intuitive UI** - Clean interface for wallet & transaction management
+- **Cross-Browser Compatibility** - Works on Chrome, Firefox, and Edge
 
-## Technologies Used
-1) React Js - Frontend
-2) Node Js - Backend
-3) Ethers Js
-4) Express Js
+## 🛠️ Tech Stack
+- **Frontend:** React, Tailwind CSS
+- **Blockchain:** Ethers.js (Ethereum)
+- **Security:** Web Crypto API, IndexedDB
+- **Extension APIs:** Chrome, Firefox, Edge (Manifest V3)
 
-## Setup
-1) Download or clone the repository using:
-```sh
-git clone https://github.com/alimazhar4/crypto-wallet-browser-extension.git
-```
-2) Navigate to the backend folder and install dependencies:
-```sh
-cd backend
+## 📦 Installation
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/VaultX.git
+cd VaultX
+
+# Install dependencies
 npm install
-```
-3) Do the same for mwallet folder (frontend) :
-```sh
-cd ..
-cd mwallet
-npm install
-```
-4) Make a .env file in the backend folder and paste your Moralis Web3 API Key at the end:
-```env
-MORALIS_KEY= <your_moralis_api_key_here>
-```
-<p>   If you don't have a Moralis Account, you can make one at <a href="https://admin.moralis.io/settings" target="_blank">https://admin.moralis.io</a></p>
 
-5) Go to mwallet directory now and make a .env file there as well and paste RPC URLs from your Alchemy or Infura. These RPC URLs are necessary to send transactions
-```env
-REACT_APP_ETHEREUM_RPC_URL=""
-REACT_APP_MUMBAI_RPC_URL=""
-REACT_APP_SEPOLIA_RPC_URL="" 
-```
-Currently I have only added these networks. You can add as many EVM compatible blockchains as you want.
-
-
-6) Navigate to the backend directory and do the following in terminal:
-```sh
-node index.js
-```
-7) Now navigate to the mwallet (frontend) directory and dev start the application:
-```sh
-npm start
-```
-8) Now if everythings right, make a production build of the mwallet directory by running:
-```sh
+# Build the extension
 npm run build
 ```
-The build folder wil be created in the mwallet directory
 
-9) Go to Google Chrome (or any of your chromium browser) and open extensions from settings.
-10) Turn on the developer mode and Load Unpack the build folder created after step 8 above.
+## 🔧 Setup & Development
+1. Load the extension in Chrome:
+   - Open `chrome://extensions/`
+   - Enable **Developer Mode**
+   - Click **Load Unpacked** and select the `dist/` folder
+2. Run the React demo app:
+```bash
+npm run dev
+```
 
+## 📜 Usage
+- Connect VaultX to your React app with:
+```javascript
+const wallet = new VaultX();
+await wallet.connect();
+const balance = await wallet.getBalance();
+```
+- Sign transactions securely:
+```javascript
+const tx = await wallet.signTransaction(txData);
+await wallet.sendTransaction(tx);
+```
 
+## 🔒 Security Best Practices
+- **Keys never leave the extension**
+- **Encrypted storage using Web Crypto API**
+- **Strict permissions model** following Manifest V3
 
+## 📌 Roadmap
+- [ ] Support additional EVM blockchains (e.g., Polkadot, Avalanche)
+- [ ] Mobile browser extension support
+- [ ] Enhanced transaction history tracking
 
+## 🤝 Contributing
+1. Fork the repo
+2. Create a new branch (`git checkout -b feature-branch`)
+3. Commit your changes (`git commit -m 'Add feature'`)
+4. Push to the branch (`git push origin feature-branch`)
+5. Open a Pull Request
+
+## 📄 License
+MIT License - Feel free to use and modify!
+
+---
+Made with ❤️ by Team /dev/null for HackNUthon 6.0
