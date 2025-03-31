@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Convert</title>
+  </head>
+  <body>
+    <nav>
+      <div class="navbar">
+        <div class="dropdown">
+          <p class="dropbtn">
+            Account 1&nbsp;<i class="fa-solid fa-caret-down"></i>
+          </p>
+          <div class="acc">
+            <p class="gray" id="copyAccountId">
+              AccountIDL0r3m...&nbsp;<i class="fa-solid fa-copy"></i>
+            </p>
+          </div>
+          <div class="dropdown-content">
+            <a href="#">Add Account</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <div class="settings dropbtn">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div class="dropdown-content">
+            <a href="#"><button id="openInTab">Expand View</button></a>
+            <a href="profile.html">Account Details</a>
+            <a href="#">Connected Sites</a>
+            <a href="#">Support</a>
+            <a href="#">Settings</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="history-container">
+      <h1 class="history-title">Convert</h1>
+    </div>
+
+    <div class="swap-container">
+      <div class="swap-box" style="margin-top: 1rem">
+        <div class="swap-label">You Pay</div>
+        <div class="swap-content">
+          <div class="amount-input">
+            <input type="number" placeholder="0" min="0" />
+          </div>
+          <div class="currency-select">
+            <select>
+              <option value="currency1">Currency 1</option>
+              <option value="currency2">Currency 2</option>
+              <option value="currency3">Currency 3</option>
+              <option value="currency4">Currency 4</option>
+              <option value="currency5">Currency 5</option>
+            </select>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="swap-arrow">
+        <i class="fa-solid fa-arrow-down"></i>
+      </div>
+
+      <div class="swap-box">
+        <div class="swap-label">You Receive</div>
+        <div class="swap-content">
+          <div class="amount-output">0</div>
+          <div class="currency-select">
+            <select>
+              <option value="currency1">Currency 1</option>
+              <option value="currency2">Currency 2</option>
+              <option value="currency3">Currency 3</option>
+              <option value="currency4">Currency 4</option>
+              <option value="currency5">Currency 5</option>
+            </select>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallet-container">
+      <div class="crypto-card">
+        <div class="crypto-logo solana">
+          <i class="fa-solid fa-circle-nodes"></i>
+        </div>
+        <div class="crypto-info">
+          <div class="crypto-name">Solana</div>
+          <div class="crypto-details">
+            <span class="crypto-amount">0.00909 SOL/USD</span>
+            <span class="value-change negative">
+              (-99.09% <i class="fa-solid fa-caret-down"></i>)
+            </span>
+          </div>
+        </div>
+        <div class="crypto-value">
+          <div class="current-value">$110.00</div>
+        </div>
+      </div>
+
+      <div class="crypto-card">
+        <div class="crypto-logo ethereum">
+          <i class="fa-brands fa-ethereum"></i>
+        </div>
+        <div class="crypto-info">
+          <div class="crypto-name">Ethereum</div>
+          <div class="crypto-details">
+            <span class="crypto-amount">0.0004 ETH/USD</span>
+            <span class="value-change negative">
+              (-99.96% <i class="fa-solid fa-caret-down"></i>)
+            </span>
+          </div>
+        </div>
+        <div class="crypto-value">
+          <div class="current-value">$2500.00</div>
+        </div>
+      </div>
+
+      <div class="crypto-card">
+        <div class="crypto-logo sui">
+          <i class="fa-solid fa-droplet"></i>
+        </div>
+        <div class="crypto-info">
+          <div class="crypto-name">Sui</div>
+          <div class="crypto-details">
+            <span class="crypto-amount">0.714 SUI/USD</span>
+            <span class="value-change negative">
+              (-28.6% <i class="fa-solid fa-caret-down"></i>)
+            </span>
+          </div>
+        </div>
+        <div class="crypto-value">
+          <div class="current-value">$1.40</div>
+        </div>
+      </div>
+
+      <div class="crypto-card">
+        <div class="crypto-logo polygon">
+          <i class="fa-solid fa-infinity"></i>
+        </div>
+        <div class="crypto-info">
+          <div class="crypto-name">Polygon</div>
+          <div class="crypto-details">
+            <span class="crypto-amount">1.25 POL/USD</span>
+            <span class="value-change positive">
+              (+25% <i class="fa-solid fa-caret-up"></i>)
+            </span>
+          </div>
+        </div>
+        <div class="crypto-value">
+          <div class="current-value">$0.80</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="pedalsup.html" class="footer-btn">
+        <i class="fa-solid fa-home"></i>
+      </a>
+      <a href="swap.html" class="footer-btn">
+        <i class="fa-solid fa-arrows-rotate"></i>
+      </a>
+      <a href="history.html" class="footer-btn">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+      </a>
+      <a href="search.html" class="footer-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </a>
+    </div>
+
+    <script src="pedalsup.js"></script>
+    <script src="swap.js"></script>
+  </body>
+</html>

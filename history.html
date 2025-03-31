@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>History</title>
+  </head>
+  <body>
+    <nav>
+      <div class="navbar">
+        <div class="dropdown">
+          <p class="dropbtn">
+            Account 1&nbsp;<i class="fa-solid fa-caret-down"></i>
+          </p>
+          <div class="acc">
+            <p class="gray" id="copyAccountId">
+              AccountIDL0r3m...&nbsp;<i class="fa-solid fa-copy"></i>
+            </p>
+          </div>
+          <div class="dropdown-content">
+            <a href="#">Add Account</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <div class="settings dropbtn">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div class="dropdown-content">
+            <a href="#"><button id="openInTab">Expand View</button></a>
+            <a href="profile.html">Account Details</a>
+            <a href="#">Connected Sites</a>
+            <a href="#">Support</a>
+            <a href="#">Settings</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="history-container">
+      <h1 class="history-title">Transaction History</h1>
+
+      <div class="transaction-card">
+        <div class="transaction-icon sent">
+          <i class="fa-solid fa-arrow-up"></i>
+        </div>
+        <div class="transaction-info">
+          <div class="transaction-type">Sent SOL</div>
+          <div class="transaction-hash">Hash: 5KJ...x8F2</div>
+          <div class="transaction-time">2 hours ago</div>
+        </div>
+        <div class="transaction-details">
+          <div class="transaction-amount negative">-2.5 SOL</div>
+          <div class="transaction-status success">Confirmed</div>
+        </div>
+      </div>
+
+      <div class="transaction-card">
+        <div class="transaction-icon received">
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+        <div class="transaction-info">
+          <div class="transaction-type">Received ETH</div>
+          <div class="transaction-hash">Hash: 7MN...p9H4</div>
+          <div class="transaction-time">Yesterday</div>
+        </div>
+        <div class="transaction-details">
+          <div class="transaction-amount positive">+0.15 ETH</div>
+          <div class="transaction-status success">Confirmed</div>
+        </div>
+      </div>
+
+      <div class="transaction-card">
+        <div class="transaction-icon swap">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </div>
+        <div class="transaction-info">
+          <div class="transaction-type">Swapped SUI to POL</div>
+          <div class="transaction-hash">Hash: 3PQ...j7R5</div>
+          <div class="transaction-time">3 days ago</div>
+        </div>
+        <div class="transaction-details">
+          <div class="transaction-amount">100 SUI → 125 POL</div>
+          <div class="transaction-status success">Confirmed</div>
+        </div>
+      </div>
+
+      <div class="transaction-card">
+        <div class="transaction-icon pending">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+        <div class="transaction-info">
+          <div class="transaction-type">Sent ETH</div>
+          <div class="transaction-hash">Hash: 9RS...k4L8</div>
+          <div class="transaction-time">Just now</div>
+        </div>
+        <div class="transaction-details">
+          <div class="transaction-amount negative">-0.5 ETH</div>
+          <div class="transaction-status pending">Pending</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="pedalsup.html" class="footer-btn">
+        <i class="fa-solid fa-home"></i>
+      </a>
+      <a href="swap.html" class="footer-btn">
+        <i class="fa-solid fa-arrows-rotate"></i>
+      </a>
+      <a href="history.html" class="footer-btn">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+      </a>
+      <a href="search.html" class="footer-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </a>
+    </div>
+
+    <script src="pedalsup.js"></script>
+  </body>
+</html>

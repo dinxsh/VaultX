@@ -1,16 +1,9 @@
-# Crypto Wallet Browser Extension
-A Blockchain project of a decentralized crypto wallet which can also be added as Chrome Extension.
-<p align="center">
-  <img src="https://github.com/alimazhar4/crypto-wallet-browser-extension/assets/59063759/d254f108-731b-49eb-a3b5-929c5d23d10d" height=350px>
-  <img src="https://github.com/alimazhar4/crypto-wallet-browser-extension/assets/59063759/b1af9b60-a6c8-4a3c-b620-9bc3c6fe73fd" height=350px>
-  <img src="https://github.com/alimazhar4/crypto-wallet-browser-extension/assets/59063759/da9bccd0-45e1-47e8-9706-3603b6083750" height=350px>
-</p>
+# VaultX
+decentralized crypto wallet which can also be added as Chrome Extension.
 
 ## Important Note
 Never share your passphrase or private keys with anyone and keep them in a safe place. Always test a new blockchain app using a testnet to make yourself sure and avoid any issues later on. 
-<p>The purpose of this project is just to practice and get blockchain development experience.</p>
-<p>➡️ <b>DO NOT USE THIS WALLET AS YOUR MAIN WALLET</b> ⬅️</p>
-<p>Because this is just a basic wallet which can recieve/send transactions and so far does not contain rich and robust security features.</p>
+
 
 ## Prerequisites
 1) Node Js
