@@ -1,0 +1,121 @@
+/* Global styles for WalletView */
+body {
+  background: #1a1b1f;
+  color: #ffffff;
+}
+
+/* Glass morphism effect */
+.glass-container {
+  background: linear-gradient(169.73deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+/* Ant Design overrides */
+.ant-tabs-nav::before {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.ant-tabs-tab {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 14px;
+}
+
+.ant-tabs-tab-active {
+  color: #ffffff !important;
+}
+
+.ant-tabs-ink-bar {
+  background: #7A73FF !important;
+}
+
+.ant-list-item {
+  border-bottom: none !important;
+}
+
+.ant-btn-primary {
+  background: #7A73FF !important;
+  border: none !important;
+  border-radius: 12px !important;
+  height: 44px !important;
+  font-size: 16px !important;
+}
+
+.ant-btn-primary:hover {
+  background: #6561FF !important;
+}
+
+.ant-input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  height: 44px !important;
+}
+
+.ant-input::placeholder {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Animation effects */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.token-list-item {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Token and NFT cards hover effects */
+.token-item, .nft-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.token-item:hover, .nft-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Balance display */
+.balance-amount {
+  font-size: 32px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #7A73FF 0%, #6561FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Action buttons */
+.action-button {
+  background: rgba(122, 115, 255, 0.1);
+  border: 1px solid rgba(122, 115, 255, 0.2);
+  border-radius: 12px;
+  color: #7A73FF;
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  background: rgba(122, 115, 255, 0.2);
+  border-color: rgba(122, 115, 255, 0.3);
+} 

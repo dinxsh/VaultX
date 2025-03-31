@@ -8,7 +8,7 @@ const Ethereum = {
 const MumbaiTestnet = {
   hex: "0x13881",
   name: "Mumbai Testnet",
-  //rpcUrl: process.env.REACT_APP_MUMBAI_RPC_URL,
+  rpcUrl: process.env.REACT_APP_MUMBAI_RPC_URL,
   rpcUr: "",
   ticker: "MATIC",
 };
@@ -16,8 +16,7 @@ const MumbaiTestnet = {
 const SepoliaTestnet = {
   hex: "0xaa36a7",
   name: "Sepolia Testnet",
-  //rpcUrl: process.env.REACT_APP_SEPOLIA_RPC_URL,
-  rpcUrl: "",
+  rpcUrl: process.env.REACT_APP_SEPOLIA_RPC_URL,
   ticker: "ETH",
 };
 

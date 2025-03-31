@@ -1,13 +1,32 @@
 {
-  "name": "Crypto Wallet Project",
-  "version": "1.0.0",
-  "description": "Self Custodial and Decentralized Crypto Wallet",
   "manifest_version": 3,
+  "name": "MWallet",
+  "version": "1.0",
+  "description": "A secure Ethereum wallet Chrome extension",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://localhost:3001/*"
+  ],
   "action": {
     "default_popup": "index.html",
-    "default_title": "Open Wallet"
+    "default_icon": {
+      "16": "logo192.png",
+      "48": "logo192.png",
+      "128": "logo192.png"
+    }
   },
-  "permissions": [
-    "storage"
-  ]
+  "icons": {
+    "16": "logo192.png",
+    "48": "logo192.png",
+    "128": "logo192.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }
