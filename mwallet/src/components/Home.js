@@ -61,13 +61,13 @@ function Home() {
         onClick={() => navigate("/yourwallet")}
         style={{...styles.button, ...styles.primaryButton}}
       >
-        Create
+        Create a new wallet
       </Button>
       <Button
         onClick={() => navigate("/recover")}
         style={{...styles.button, ...styles.secondaryButton}}
       >
-        Sign In
+        Import wallet with seed phrase
       </Button>
     </div>
   );

@@ -15,43 +15,46 @@ function App() {
 
   const styles = {
     appContainer: {
-      background: 'rgba(10, 11, 13, 0.9)',
+      background: '#0A0B0D',
       minHeight: '100vh',
-      width: '100vw',
+      width: '100%',
       margin: 0,
       padding: 0,
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      overflow: 'hidden'
     },
     header: {
       background: 'rgba(10, 11, 13, 0.9)',
       backdropFilter: 'blur(20px)',
-      padding: '16px 24px',
+      padding: '8px 12px',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.04)'
+      borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 100,
+      height: '40px'
     },
     logo: {
-      height: '32px',
+      height: '20px',
       width: 'auto'
-    },
-    chainSelect: {
-      background: 'rgba(255, 255, 255, 0.05)',
-      borderRadius: '12px',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
-      color: '#fff',
-      padding: '4px 12px',
-      minWidth: '140px'
     },
     content: {
       flex: 1,
       display: 'flex',
-      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
+      marginTop: '40px',
       padding: '0',
-      background: 'linear-gradient(180deg, rgba(10, 11, 13, 0.9) 0%, rgba(10, 11, 13, 1) 100%)'
+      width: '100%',
+      maxWidth: '380px',
+      margin: '0 auto',
+      background: 'linear-gradient(180deg, rgba(10, 11, 13, 0.9) 0%, rgba(10, 11, 13, 1) 100%)',
+      position: 'relative'
     }
   };
 
@@ -68,23 +71,33 @@ function App() {
               value: "0x1",
             },
             {
-              label: "Mumbai Testnet",
+              label: "Mumbai Testnet", 
               value: "0x13881",
             },
             {
               label: "Sepolia Testnet",
-              value: "0xaa36a7",
+              value: "0xaa36a7", 
             },
           ]}
           style={{
-            width: '160px',
+            width: 'fit-content',
+            minWidth: '140px',
+            background: '#222222',
+            border: '1px solid #333333',
+            borderRadius: '8px',
+            color: '#fff',
+            marginRight: '12px'
           }}
           dropdownStyle={{
-            background: '#1A1B1F',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            borderRadius: '12px'
+            background: '#222222',
+            border: '1px solid #333333',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
           }}
-          className="chain-select"
+          optionLabelProp="label"
+          menuItemSelectedIcon={null}
+          dropdownClassName="phantom-dropdown"
+          className="phantom-select"
         />
       </header>
       <main style={styles.content}>

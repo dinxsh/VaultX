@@ -20,44 +20,33 @@ const styles = {
   container: {
     width: '100%',
     maxWidth: '380px',
-    height: 'calc(100vh - 65px)', // Subtracting header height
+    height: 'calc(100vh - 40px)',
     background: '#1A1B1F',
-    backdropFilter: 'blur(20px)',
     color: '#fff',
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
     overflow: 'hidden',
-    '&::before': {
-      content: '""',
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      right: '0',
-      height: '200px',
-      background: 'linear-gradient(180deg, rgba(88, 101, 242, 0.1) 0%, rgba(26, 27, 31, 0) 100%)',
-      zIndex: '0',
-      pointerEvents: 'none',
-    }
   },
   header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '16px 20px',
+    padding: '10px 12px',
     borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
     background: 'rgba(26, 27, 31, 0.9)',
     backdropFilter: 'blur(20px)',
-    position: 'relative',
-    zIndex: '1'
+    position: 'sticky',
+    top: 0,
+    zIndex: 2
   },
   accountBadge: {
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
+    gap: '8px',
     background: 'rgba(255, 255, 255, 0.05)',
-    padding: '8px 16px',
-    borderRadius: '12px',
+    padding: '6px 10px',
+    borderRadius: '10px',
     cursor: 'pointer',
     transition: 'all 0.2s ease',
     '&:hover': {
@@ -67,35 +56,39 @@ const styles = {
   accountIcon: {
     background: 'linear-gradient(135deg, #5865F2 0%, #7B83EB 100%)',
     borderRadius: '50%',
-    width: '32px',
-    height: '32px',
+    width: '24px',
+    height: '24px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '14px',
+    fontSize: '12px',
     fontWeight: '600',
     color: '#fff'
   },
   content: {
     flex: 1,
     overflowY: 'auto',
-    padding: '24px 20px',
+    overflowX: 'hidden',
     position: 'relative',
-    zIndex: '1'
+  },
+  innerContent: {
+    padding: '16px 12px',
+    position: 'relative',
+    zIndex: 2
   },
   balanceSection: {
     textAlign: 'center',
-    marginBottom: '32px',
+    marginBottom: '24px',
   },
   balanceAmount: {
     color: '#fff',
-    fontSize: '36px',
+    fontSize: '28px',
     fontWeight: '600',
-    marginBottom: '8px',
+    marginBottom: '4px',
   },
   balanceChange: {
     color: '#5865F2',
-    fontSize: '16px',
+    fontSize: '14px',
     fontWeight: '500',
   },
   accountInfo: {
@@ -116,17 +109,17 @@ const styles = {
   },
   actionButtons: {
     display: 'flex',
-    gap: '12px',
-    marginBottom: '24px',
+    gap: '8px',
+    marginBottom: '16px',
   },
   actionButton: {
     flex: 1,
     background: 'rgba(88, 101, 242, 0.1)',
     border: 'none',
-    borderRadius: '12px',
-    padding: '12px',
+    borderRadius: '10px',
+    padding: '8px',
     color: '#5865F2',
-    fontSize: '16px',
+    fontSize: '14px',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     '&:hover': {
@@ -145,17 +138,17 @@ const styles = {
   },
   nftGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-    gap: '15px',
-    padding: '15px',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
+    gap: '12px',
+    padding: '12px',
   },
   nftCard: {
     background: 'rgba(255, 255, 255, 0.05)',
-    borderRadius: '16px',
+    borderRadius: '12px',
     overflow: 'hidden',
     transition: 'transform 0.3s ease',
     '&:hover': {
-      transform: 'translateY(-5px)',
+      transform: 'translateY(-3px)',
     },
   },
 };
@@ -291,9 +284,9 @@ function WalletView({
               renderItem={(item) => (
                 <List.Item style={{
                   background: 'rgba(22, 24, 29, 0.9)',
-                  borderRadius: '12px',
-                  marginBottom: '8px',
-                  padding: '12px 16px',
+                  borderRadius: '10px',
+                  marginBottom: '6px',
+                  padding: '10px 12px',
                   border: 'none',
                   cursor: 'pointer',
                   '&:hover': {
@@ -541,7 +534,7 @@ function WalletView({
             <Spin />
           </div>
         ) : (
-          <>
+          <div style={styles.innerContent}>
             <div style={styles.balanceSection}>
               <div style={styles.balanceAmount}>$10.0</div>
               <div style={styles.balanceChange}>+120%</div>
@@ -554,6 +547,7 @@ function WalletView({
                 color: '#fff',
                 '& .ant-tabs-tab': {
                   color: 'rgba(255, 255, 255, 0.6) !important',
+                  padding: '0 16px 12px 16px',
                 },
                 '& .ant-tabs-tab-active': {
                   color: '#fff !important',
@@ -561,9 +555,12 @@ function WalletView({
                 '& .ant-tabs-ink-bar': {
                   background: '#5865F2 !important',
                 },
+                '& .ant-tabs-content': {
+                  padding: '0',
+                }
               }}
             />
-          </>
+          </div>
         )}
       </div>
     </div>
