@@ -18,11 +18,11 @@ function App() {
       background: '#0A0B0D',
       minHeight: '100vh',
       width: '100%',
-      margin: 0,
+      marginTop: 30,
       padding: 0,
       display: 'flex',
       flexDirection: 'column',
-      overflow: 'hidden'
+      overflow: 'hidden',
     },
     header: {
       background: 'rgba(10, 11, 13, 0.9)',
@@ -38,7 +38,6 @@ function App() {
       right: 0,
       zIndex: 100,
       height: '40px',
-      marginBottom: '10px'
     },
     logo: {
       height: '20px',

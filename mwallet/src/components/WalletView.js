@@ -6,8 +6,12 @@ import {
   Spin,
   Tabs,
   Button,
+  Modal,
+  Input,
+  message,
+  Select,
 } from "antd";
-import { LogoutOutlined, SettingOutlined  } from "@ant-design/icons";
+import { LogoutOutlined, SettingOutlined, CopyOutlined, QrcodeOutlined, ArrowRightOutlined, DollarOutlined, CloseOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import logo from "../noImg.png";
 import { makeApiRequest, API_BASE_URL } from "../utils/api";
@@ -153,6 +157,150 @@ const styles = {
   },
 };
 
+// Add these new modal styles after the existing styles object
+const modalStyles = {
+  modal: {
+    background: '#141414',
+    borderRadius: '20px',
+    border: '1px solid rgba(255, 255, 255, 0.05)',
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+    padding: 0,
+    overflow: 'hidden',
+  },
+  modalHeader: {
+    padding: '20px',
+    borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+    background: 'rgba(20, 20, 20, 0.95)',
+    backdropFilter: 'blur(10px)',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  modalTitle: {
+    color: '#fff',
+    fontSize: '20px',
+    fontWeight: '600',
+    margin: 0,
+    letterSpacing: '-0.5px',
+  },
+  modalContent: {
+    padding: '24px',
+    background: '#141414',
+  },
+  input: {
+    background: 'rgba(255, 255, 255, 0.03)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '12px',
+    color: '#fff',
+    padding: '12px 16px',
+    width: '100%',
+    fontSize: '15px',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+    },
+    '&:focus': {
+      border: '1px solid #5865F2',
+      boxShadow: '0 0 0 2px rgba(88, 101, 242, 0.2)',
+    }
+  },
+  button: {
+    width: '100%',
+    height: '48px',
+    background: 'linear-gradient(135deg, #5865F2 0%, #7B83EB 100%)',
+    border: 'none',
+    borderRadius: '12px',
+    color: '#fff',
+    fontSize: '16px',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      background: 'linear-gradient(135deg, #4752C4 0%, #5865F2 100%)',
+      transform: 'translateY(-1px)',
+    },
+    '&:active': {
+      transform: 'translateY(0)',
+    },
+    '&:disabled': {
+      background: '#2C2F36',
+      cursor: 'not-allowed',
+      opacity: 0.5,
+    },
+  },
+  addressBox: {
+    background: 'rgba(255, 255, 255, 0.03)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '16px',
+    padding: '16px',
+    marginBottom: '24px',
+  },
+  addressText: {
+    color: '#fff',
+    fontSize: '15px',
+    wordBreak: 'break-all',
+    fontFamily: 'monospace',
+    letterSpacing: '0.5px',
+  },
+  copyButton: {
+    background: 'transparent',
+    border: 'none',
+    color: '#5865F2',
+    cursor: 'pointer',
+    padding: '6px 12px',
+    borderRadius: '8px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    fontSize: '14px',
+    transition: 'all 0.2s ease',
+    '&:hover': {
+      background: 'rgba(88, 101, 242, 0.1)',
+    }
+  },
+  qrContainer: {
+    background: '#fff',
+    padding: '32px',
+    borderRadius: '16px',
+    width: 'fit-content',
+    margin: '32px auto',
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+  },
+  label: {
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: '14px',
+    fontWeight: '500',
+    marginBottom: '8px',
+    display: 'block',
+  },
+  select: {
+    width: '100%',
+    background: 'rgba(255, 255, 255, 0.03)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '12px',
+    color: '#fff',
+    '& .ant-select-selector': {
+      background: 'transparent !important',
+      border: 'none !important',
+      color: '#fff !important',
+    },
+    '& .ant-select-arrow': {
+      color: 'rgba(255, 255, 255, 0.5)',
+    }
+  },
+  tokenOption: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    padding: '8px',
+  },
+  tokenIcon: {
+    width: '24px',
+    height: '24px',
+    borderRadius: '50%',
+  },
+};
+
 function WalletView({
   wallet,
   setWallet,
@@ -165,10 +313,10 @@ function WalletView({
     {
       token_address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       name: "Ethereum",
-      symbol: "ETH",
+      symbol: "ETH", 
       logo: "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
       balance: "0.01",
-      decimals: "18", 
+      decimals: "18",
       price_change_24h: -0.29,
       usd_price: 18.58
     },
@@ -176,35 +324,55 @@ function WalletView({
       token_address: "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
       name: "Polygon",
       symbol: "MATIC",
-      logo: "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png",
+      logo: "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png", 
       balance: "0.00",
       decimals: "18",
       price_change_24h: 0,
       usd_price: 0.00
     },
     {
-      token_address: "0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39", 
-      name: "Solana",
+      token_address: "0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39",
+      name: "Solana", 
       symbol: "SOL",
       logo: "https://assets.coingecko.com/coins/images/4128/large/solana.png",
       balance: "0.00",
       decimals: "18",
       price_change_24h: 0,
       usd_price: 0.00
+    },
+    {
+      token_address: "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+      name: "Wrapped Bitcoin",
+      symbol: "WBTC",
+      logo: "https://assets.coingecko.com/coins/images/7598/large/wrapped_bitcoin_wbtc.png",
+      balance: "0.00",
+      decimals: "8",
+      price_change_24h: 0.15,
+      usd_price: 42000.00
+    },
+    {
+      token_address: "0x514910771af9ca656af840dff83e8264ecf986ca",
+      name: "Chainlink",
+      symbol: "LINK",
+      logo: "https://assets.coingecko.com/coins/images/877/large/chainlink-new-logo.png",
+      balance: "0.00",
+      decimals: "18",
+      price_change_24h: 1.25,
+      usd_price: 14.50
     }
   ]);
   const [nfts, setNfts] = useState([
     {
       id: "1",
-      name: "Bored Ape #7238",
+      name: "Bored Ape #7238", 
       collection: "Bored Ape Yacht Club",
       image: "https://miro.medium.com/v2/resize:fit:1066/1*KPsITt8mUz9hPtkSUCmgVg.jpeg",
       floor_price: "18.5 ETH"
     },
     {
-      id: "2", 
+      id: "2",
       name: "Azuki #4623",
-      collection: "Azuki",
+      collection: "Azuki", 
       image: "https://th.bing.com/th/id/OIP.nC3Oq0_fXAjJBIdVKdAmHgHaHa?rs=1&pid=ImgDetMain",
       floor_price: "12.2 ETH"
     },
@@ -214,6 +382,13 @@ function WalletView({
       collection: "Doodles",
       image: "https://i.seadn.io/gcs/files/f1273e4d0d141ed4f0c6242a32ad9a32.png",
       floor_price: "3.8 ETH"
+    },
+    {
+      id: "4",
+      name: "Pudgy Penguin #2156",
+      collection: "Pudgy Penguins",
+      image: "https://nftevening.com/wp-content/uploads/2022/08/unnamed-1-4.png",
+      floor_price: "6.1 ETH"
     }
   ]);
   const [balance, setBalance] = useState(0);
@@ -222,7 +397,7 @@ function WalletView({
       token_symbol: "ETH",
       transaction_type: "Sent",
       usd_value: "180.50",
-      block_timestamp: "2024-01-15T10:30:00",
+      block_timestamp: "2024-02-15T10:30:00",
       from_address: "0x1234567890abcdef1234567890abcdef1ayq41637",
       token_logo: "https://assets.coingecko.com/coins/images/279/large/ethereum.png"
     },
@@ -230,7 +405,7 @@ function WalletView({
       token_symbol: "MATIC",
       transaction_type: "Received", 
       usd_value: "50.20",
-      block_timestamp: "2024-01-14T15:45:00",
+      block_timestamp: "2024-02-14T15:45:00",
       from_address: "0xabcdef1234567890abcdef1234567890abawdf12",
       token_logo: "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png"
     },
@@ -238,9 +413,33 @@ function WalletView({
       token_symbol: "SOL",
       transaction_type: "Sent",
       usd_value: "95.30",
-      block_timestamp: "2024-01-13T09:15:00", 
+      block_timestamp: "2024-02-13T09:15:00", 
       from_address: "0x7890abcdef1234567890abcdef1234567281baew",
       token_logo: "https://assets.coingecko.com/coins/images/4128/large/solana.png"
+    },
+    {
+      token_symbol: "WBTC",
+      transaction_type: "Received",
+      usd_value: "420.75",
+      block_timestamp: "2024-02-12T14:20:00",
+      from_address: "0x2468ace135790bdf246801234567890cdafbe13",
+      token_logo: "https://assets.coingecko.com/coins/images/7598/large/wrapped_bitcoin_wbtc.png"
+    },
+    {
+      token_symbol: "LINK",
+      transaction_type: "Sent",
+      usd_value: "145.80",
+      block_timestamp: "2024-02-11T11:25:00",
+      from_address: "0x13579bdf2468ace13579bdf2468ace13acd4680",
+      token_logo: "https://assets.coingecko.com/coins/images/877/large/chainlink-new-logo.png"
+    },
+    {
+      token_symbol: "ETH",
+      transaction_type: "Received",
+      usd_value: "275.60",
+      block_timestamp: "2024-02-10T16:50:00",
+      from_address: "0xfedcba9876543210fedcba9876543210dcba432",
+      token_logo: "https://assets.coingecko.com/coins/images/279/large/ethereum.png"
     }
   ]);
   const [nftTransfers, setNftTransfers] = useState([]);
@@ -249,6 +448,12 @@ function WalletView({
   const [sendToAddress, setSendToAddress] = useState("");
   const [processing, setProcessing] = useState(false);
   const [hash, setHash] = useState(null);
+  const [depositModalVisible, setDepositModalVisible] = useState(false);
+  const [buyModalVisible, setBuyModalVisible] = useState(false);
+  const [sendModalVisible, setSendModalVisible] = useState(false);
+  const [recipientAddress, setRecipientAddress] = useState("");
+  const [amount, setAmount] = useState("");
+  const [selectedToken, setSelectedToken] = useState(null);
 
   const items = [
     {
@@ -258,17 +463,29 @@ function WalletView({
         <div style={{ padding: '10px' }}>
           <div>
             <div style={styles.actionButtons}>
-              <Button type="primary" style={styles.actionButton}>
+              <Button 
+                type="primary" 
+                style={styles.actionButton}
+                onClick={() => setDepositModalVisible(true)}
+              >
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <span style={{ color: '#fff' }}>Deposit</span>
                 </div>
               </Button>
-              <Button type="primary" style={styles.actionButton}>
+              <Button 
+                type="primary" 
+                style={styles.actionButton}
+                onClick={() => setBuyModalVisible(true)}
+              >
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <span style={{ color: '#fff' }}>Buy</span>
                 </div>
               </Button>
-              <Button type="primary" style={styles.actionButton}>
+              <Button 
+                type="primary" 
+                style={styles.actionButton}
+                onClick={() => setSendModalVisible(true)}
+              >
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <span style={{ color: '#fff' }}>Send</span>
                 </div>
@@ -508,6 +725,30 @@ function WalletView({
     }
   }, [getAccountTokens, selectedChain, wallet]);
 
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText(wallet);
+    message.success('Address copied to clipboard');
+  };
+
+  const handleSend = async () => {
+    if (!recipientAddress || !amount || !selectedToken) {
+      message.error('Please fill in all fields');
+      return;
+    }
+
+    try {
+      await sendTransaction(recipientAddress, amount);
+      message.success('Transaction sent successfully');
+      setSendModalVisible(false);
+      setRecipientAddress("");
+      setAmount("");
+      setSelectedToken(null);
+    } catch (error) {
+      message.error('Transaction failed');
+      console.error(error);
+    }
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.header}>
@@ -563,6 +804,153 @@ function WalletView({
           </div>
         )}
       </div>
+
+      <Modal
+        visible={depositModalVisible}
+        onCancel={() => setDepositModalVisible(false)}
+        footer={null}
+        centered
+        className="phantom-modal"
+        style={modalStyles.modal}
+        closeIcon={<CloseOutlined style={{ color: 'rgba(255, 255, 255, 0.5)' }} />}
+      >
+        <div style={modalStyles.modalHeader}>
+          <h3 style={modalStyles.modalTitle}>Deposit</h3>
+        </div>
+        <div style={modalStyles.modalContent}>
+          <div style={modalStyles.addressBox}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              <span style={modalStyles.label}>Your wallet address</span>
+              <button style={modalStyles.copyButton} onClick={handleCopyAddress}>
+                <CopyOutlined /> Copy
+              </button>
+            </div>
+            <p style={modalStyles.addressText}>{wallet}</p>
+          </div>
+          <div style={modalStyles.qrContainer}>
+            <QrcodeOutlined style={{ fontSize: '180px', color: '#141414' }} />
+          </div>
+          <p style={{ color: 'rgba(255, 255, 255, 0.5)', textAlign: 'center', fontSize: '14px', marginTop: '24px' }}>
+            Send only supported tokens to this address
+          </p>
+        </div>
+      </Modal>
+
+      <Modal
+        visible={buyModalVisible}
+        onCancel={() => setBuyModalVisible(false)}
+        footer={null}
+        centered
+        className="phantom-modal"
+        style={modalStyles.modal}
+        closeIcon={<CloseOutlined style={{ color: 'rgba(255, 255, 255, 0.5)' }} />}
+      >
+        <div style={modalStyles.modalHeader}>
+          <h3 style={modalStyles.modalTitle}>Buy Crypto</h3>
+        </div>
+        <div style={modalStyles.modalContent}>
+          <div style={{ marginBottom: '24px' }}>
+            <label style={modalStyles.label}>Select Token</label>
+            <Select
+              style={modalStyles.select}
+              placeholder="Select token"
+              onChange={(value) => setSelectedToken(value)}
+              dropdownStyle={{ 
+                background: '#141414', 
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '12px',
+              }}
+              optionLabelProp="label"
+            >
+              {tokens.map(token => (
+                <Select.Option key={token.symbol} value={token.symbol} label={token.symbol}>
+                  <div style={modalStyles.tokenOption}>
+                    <img src={token.logo} alt={token.symbol} style={modalStyles.tokenIcon} />
+                    <span style={{ color: '#fff' }}>{token.symbol}</span>
+                  </div>
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
+          <div style={{ marginBottom: '24px' }}>
+            <label style={modalStyles.label}>Amount (USD)</label>
+            <Input
+              prefix={<DollarOutlined style={{ color: 'rgba(255, 255, 255, 0.5)' }} />}
+              placeholder="Enter amount"
+              style={modalStyles.input}
+            />
+          </div>
+          <Button type="primary" style={modalStyles.button}>
+            Continue to Payment
+          </Button>
+        </div>
+      </Modal>
+
+      <Modal
+        visible={sendModalVisible}
+        onCancel={() => setSendModalVisible(false)}
+        footer={null}
+        centered
+        className="phantom-modal"
+        style={modalStyles.modal}
+        closeIcon={<CloseOutlined style={{ color: 'rgba(255, 255, 255, 0.5)' }} />}
+      >
+        <div style={modalStyles.modalHeader}>
+          <h3 style={modalStyles.modalTitle}>Send</h3>
+        </div>
+        <div style={modalStyles.modalContent}>
+          <div style={{ marginBottom: '24px' }}>
+            <label style={modalStyles.label}>Select Token</label>
+            <Select
+              style={modalStyles.select}
+              placeholder="Select token"
+              onChange={(value) => setSelectedToken(value)}
+              dropdownStyle={{ 
+                background: '#141414', 
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '12px',
+              }}
+              optionLabelProp="label"
+            >
+              {tokens.map(token => (
+                <Select.Option key={token.symbol} value={token.symbol} label={token.symbol}>
+                  <div style={modalStyles.tokenOption}>
+                    <img src={token.logo} alt={token.symbol} style={modalStyles.tokenIcon} />
+                    <span style={{ color: '#fff' }}>{token.symbol}</span>
+                  </div>
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
+          <div style={{ marginBottom: '24px' }}>
+            <label style={modalStyles.label}>Recipient Address</label>
+            <Input
+              placeholder="Enter recipient address"
+              value={recipientAddress}
+              onChange={(e) => setRecipientAddress(e.target.value)}
+              style={modalStyles.input}
+            />
+          </div>
+          <div style={{ marginBottom: '24px' }}>
+            <label style={modalStyles.label}>Amount</label>
+            <Input
+              placeholder="Enter amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              style={modalStyles.input}
+              suffix={selectedToken && <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>{selectedToken}</span>}
+            />
+          </div>
+          <Button 
+            type="primary" 
+            style={modalStyles.button}
+            onClick={handleSend}
+            disabled={!recipientAddress || !amount || !selectedToken}
+          >
+            Review Send
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 }
