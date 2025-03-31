@@ -13,10 +13,52 @@ function App() {
   const [seedPhrase, setSeedPhrase] = useState(null);
   const [selectedChain, setSelectedChain] = useState("0x1");
 
+  const styles = {
+    appContainer: {
+      background: 'rgba(10, 11, 13, 0.9)',
+      minHeight: '100vh',
+      width: '100vw',
+      margin: 0,
+      padding: 0,
+      display: 'flex',
+      flexDirection: 'column'
+    },
+    header: {
+      background: 'rgba(10, 11, 13, 0.9)',
+      backdropFilter: 'blur(20px)',
+      padding: '16px 24px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.04)'
+    },
+    logo: {
+      height: '32px',
+      width: 'auto'
+    },
+    chainSelect: {
+      background: 'rgba(255, 255, 255, 0.05)',
+      borderRadius: '12px',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      color: '#fff',
+      padding: '4px 12px',
+      minWidth: '140px'
+    },
+    content: {
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '0',
+      background: 'linear-gradient(180deg, rgba(10, 11, 13, 0.9) 0%, rgba(10, 11, 13, 1) 100%)'
+    }
+  };
+
   return (
-    <div className="App">
-      <header>
-        <img src={logo} className="headerLogo" alt="logo" />
+    <div style={styles.appContainer}>
+      <header style={styles.header}>
+        <img src={logo} style={styles.logo} alt="logo" />
         <Select
           onChange={(val) => setSelectedChain(val)}
           value={selectedChain}
@@ -34,47 +76,57 @@ function App() {
               value: "0xaa36a7",
             },
           ]}
-          className="dropdown"
-        ></Select>
+          style={{
+            width: '160px',
+          }}
+          dropdownStyle={{
+            background: '#1A1B1F',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '12px'
+          }}
+          className="chain-select"
+        />
       </header>
-      {wallet && seedPhrase ? (
-        <Routes>
-          <Route
-            path="/yourwallet"
-            element={
-              <WalletView
-                wallet={wallet}
-                setWallet={setWallet}
-                seedPhrase={seedPhrase}
-                setSeedPhrase={setSeedPhrase}
-                selectedChain={selectedChain}
-              />
-            }
-          />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/recover"
-            element={
-              <RecoverAccount
-                setSeedPhrase={setSeedPhrase}
-                setWallet={setWallet}
-              />
-            }
-          />
-          <Route
-            path="/yourwallet"
-            element={
-              <CreateAccount
-                setSeedPhrase={setSeedPhrase}
-                setWallet={setWallet}
-              />
-            }
-          />
-        </Routes>
-      )}
+      <main style={styles.content}>
+        {wallet && seedPhrase ? (
+          <Routes>
+            <Route
+              path="/yourwallet"
+              element={
+                <WalletView
+                  wallet={wallet}
+                  setWallet={setWallet}
+                  seedPhrase={seedPhrase}
+                  setSeedPhrase={setSeedPhrase}
+                  selectedChain={selectedChain}
+                />
+              }
+            />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/recover"
+              element={
+                <RecoverAccount
+                  setSeedPhrase={setSeedPhrase}
+                  setWallet={setWallet}
+                />
+              }
+            />
+            <Route
+              path="/yourwallet"
+              element={
+                <CreateAccount
+                  setSeedPhrase={setSeedPhrase}
+                  setWallet={setWallet}
+                />
+              }
+            />
+          </Routes>
+        )}
+      </main>
     </div>
   );
 }

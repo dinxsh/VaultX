@@ -18,12 +18,12 @@ const { ethers } = require("ethers");
 // Custom styles
 const styles = {
   container: {
-    background: 'linear-gradient(169.73deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%)',
+    width: '100%',
+    maxWidth: '380px',
+    height: 'calc(100vh - 65px)', // Subtracting header height
+    background: '#1A1B1F',
     backdropFilter: 'blur(20px)',
-    borderRadius: '16px',
-    padding: '20px',
     color: '#fff',
-    minHeight: '600px',
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
@@ -31,12 +31,12 @@ const styles = {
     '&::before': {
       content: '""',
       position: 'absolute',
-      top: '-50%',
-      left: '-50%',
-      width: '200%',
-      height: '200%',
-      background: 'radial-gradient(circle, rgba(0, 255, 157, 0.1) 0%, rgba(0, 255, 157, 0) 70%)',
-      zIndex: '-1',
+      top: '0',
+      left: '0',
+      right: '0',
+      height: '200px',
+      background: 'linear-gradient(180deg, rgba(88, 101, 242, 0.1) 0%, rgba(26, 27, 31, 0) 100%)',
+      zIndex: '0',
       pointerEvents: 'none',
     }
   },
@@ -44,8 +44,12 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '24px',
-    padding: '0 4px',
+    padding: '16px 20px',
+    borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+    background: 'rgba(26, 27, 31, 0.9)',
+    backdropFilter: 'blur(20px)',
+    position: 'relative',
+    zIndex: '1'
   },
   accountBadge: {
     display: 'flex',
@@ -57,11 +61,11 @@ const styles = {
     cursor: 'pointer',
     transition: 'all 0.2s ease',
     '&:hover': {
-      background: 'rgba(255, 255, 255, 0.1)',
+      background: 'rgba(255, 255, 255, 0.08)',
     }
   },
   accountIcon: {
-    background: 'linear-gradient(135deg, #00ff9d 0%, #00f0ff 100%)',
+    background: 'linear-gradient(135deg, #5865F2 0%, #7B83EB 100%)',
     borderRadius: '50%',
     width: '32px',
     height: '32px',
@@ -70,19 +74,27 @@ const styles = {
     justifyContent: 'center',
     fontSize: '14px',
     fontWeight: '600',
+    color: '#fff'
+  },
+  content: {
+    flex: 1,
+    overflowY: 'auto',
+    padding: '24px 20px',
+    position: 'relative',
+    zIndex: '1'
   },
   balanceSection: {
     textAlign: 'center',
     marginBottom: '32px',
   },
   balanceAmount: {
-    color: '#00ff9d',
+    color: '#fff',
     fontSize: '36px',
     fontWeight: '600',
     marginBottom: '8px',
   },
   balanceChange: {
-    color: '#00ff9d',
+    color: '#5865F2',
     fontSize: '16px',
     fontWeight: '500',
   },
@@ -104,22 +116,22 @@ const styles = {
   },
   actionButtons: {
     display: 'flex',
-    gap: '10px',
-    marginBottom: '20px',
+    gap: '12px',
+    marginBottom: '24px',
   },
   actionButton: {
     flex: 1,
-    background: '#7A73FF',
+    background: 'rgba(88, 101, 242, 0.1)',
     border: 'none',
     borderRadius: '12px',
     padding: '12px',
-    color: '#fff',
+    color: '#5865F2',
     fontSize: '16px',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     '&:hover': {
-      background: '#6561FF',
-    },
+      background: 'rgba(88, 101, 242, 0.15)',
+    }
   },
   tokenList: {
     background: 'transparent',
@@ -193,14 +205,14 @@ function WalletView({
       id: "1",
       name: "Bored Ape #7238",
       collection: "Bored Ape Yacht Club",
-      image: "https://i.seadn.io/gcs/files/c49d2493f2ef4a40a5306dfa753a9b7c.png",
+      image: "https://miro.medium.com/v2/resize:fit:1066/1*KPsITt8mUz9hPtkSUCmgVg.jpeg",
       floor_price: "18.5 ETH"
     },
     {
       id: "2", 
       name: "Azuki #4623",
       collection: "Azuki",
-      image: "https://i.seadn.io/gcs/files/c3bca0c70e12f4a7fad6b0a5ef104af9.png",
+      image: "https://th.bing.com/th/id/OIP.nC3Oq0_fXAjJBIdVKdAmHgHaHa?rs=1&pid=ImgDetMain",
       floor_price: "12.2 ETH"
     },
     {
@@ -518,40 +530,42 @@ function WalletView({
           </div>
         </div>
         <div style={{ display: 'flex', gap: '20px' }}>
-          <SettingOutlined style={{ fontSize: '20px', cursor: 'pointer', opacity: 0.8 }} />
-          <LogoutOutlined style={{ fontSize: '20px', cursor: 'pointer', opacity: 0.8 }} onClick={logout} />
+          <SettingOutlined style={{ fontSize: '20px', cursor: 'pointer', opacity: 0.6 }} />
+          <LogoutOutlined style={{ fontSize: '20px', cursor: 'pointer', opacity: 0.6 }} onClick={logout} />
         </div>
       </div>
 
-      {fetching ? (
-        <div style={{ textAlign: "center", padding: "20px" }}>
-          <Spin />
-        </div>
-      ) : (
-        <>
-          <div style={styles.balanceSection}>
-            <div style={styles.balanceAmount}>$10.0</div>
-            <div style={styles.balanceChange}>+120%</div>
+      <div style={styles.content}>
+        {fetching ? (
+          <div style={{ textAlign: "center", padding: "20px" }}>
+            <Spin />
           </div>
-          <Tabs 
-            defaultActiveKey="1" 
-            items={items} 
-            className="walletView"
-            style={{
-              color: '#fff',
-              '& .ant-tabs-tab': {
-                color: 'rgba(255, 255, 255, 0.6) !important',
-              },
-              '& .ant-tabs-tab-active': {
-                color: '#fff !important',
-              },
-              '& .ant-tabs-ink-bar': {
-                background: '#00ff9d !important',
-              },
-            }}
-          />
-        </>
-      )}
+        ) : (
+          <>
+            <div style={styles.balanceSection}>
+              <div style={styles.balanceAmount}>$10.0</div>
+              <div style={styles.balanceChange}>+120%</div>
+            </div>
+            <Tabs 
+              defaultActiveKey="1" 
+              items={items} 
+              className="walletView"
+              style={{
+                color: '#fff',
+                '& .ant-tabs-tab': {
+                  color: 'rgba(255, 255, 255, 0.6) !important',
+                },
+                '& .ant-tabs-tab-active': {
+                  color: '#fff !important',
+                },
+                '& .ant-tabs-ink-bar': {
+                  background: '#5865F2 !important',
+                },
+              }}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 }
