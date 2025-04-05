@@ -1,26 +1,21 @@
-# VaultX 🔒
+### VaultX 
 
-a **browser extension wallet** supporting multiple EVM-based blockchain networks, provides a **developer-friendly API** & ensures **security**!
+fast & secure crypto wallet chrome extension
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/752e24b9-379c-42c6-99c6-5ee8b8be94af"></img>
-</div>
+  <img src="https://cdn.discordapp.com/attachments/1357095797082161323/1357872849745875055/image.png?ex=67f1c923&is=67f077a3&hm=e05e10fc98d6f0de811fbc8ded4d2c1db0bc3074e2139c0e4df6257cf1bcb917&"></img>
 
-## 🚀 Features
-- **Standardized Wallet API** - Easily connect to React apps
-- **Multi-Chain Support** - Works with Ethereum, Solana, and more
-- **Secure Key Management** - Uses Web Crypto API & IndexedDB
-- **Minimal Configuration** - Simple integration for developers
-- **Intuitive UI** - Clean interface for wallet & transaction management
-- **Cross-Browser Compatibility** - Works on Chrome, Firefox, and Edge
+### Features
+- Easily connects to React apps
+- Works with Ethereum, Solana, and more
+- Uses Web Crypto API, & IndexedDB
 
-## 🛠️ Tech Stack
+### Tech
 - **Frontend:** React, Tailwind CSS
 - **Blockchain:** Ethers.js (Ethereum)
 - **Security:** Web Crypto API, IndexedDB
 - **Extension APIs:** Chrome, Firefox, Edge (Manifest V3)
 
-## 📦 Installation
+### Installation
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/VaultX.git
@@ -33,7 +28,7 @@ npm install
 npm run build
 ```
 
-## 🔧 Setup & Development
+### Setup
 1. Load the extension in Chrome:
    - Open `chrome://extensions/`
    - Enable **Developer Mode**
@@ -43,7 +38,7 @@ npm run build
 npm run dev
 ```
 
-## 📜 Usage
+### Usage
 - Connect VaultX to your React app with:
 ```javascript
 const wallet = new VaultX();
@@ -56,24 +51,24 @@ const tx = await wallet.signTransaction(txData);
 await wallet.sendTransaction(tx);
 ```
 
-## 🔒 Security Best Practices
+### Security
 - **Keys never leave the extension**
 - **Encrypted storage using Web Crypto API**
 - **Strict permissions model** following Manifest V3
 
-## 📌 Roadmap
+### Roadmap
 - [ ] Support additional EVM blockchains (e.g., Polkadot, Avalanche)
 - [ ] Mobile browser extension support
 - [ ] Enhanced transaction history tracking
 
-## 🤝 Contributing
+### Contributing
 1. Fork the repo
 2. Create a new branch (`git checkout -b feature-branch`)
 3. Commit your changes (`git commit -m 'Add feature'`)
 4. Push to the branch (`git push origin feature-branch`)
 5. Open a Pull Request
 
-## 📄 License
+### License
 MIT License - Feel free to use and modify!
 
 ---
